@@ -26,6 +26,9 @@
         progressBox.style.setProperty('display', 'relative');
         document.getElementsByClassName('sb-status-box')[0].style = 'display: none';
 
+        const pangrams = new Set(window.gameData.today.pangrams.map(a => a.toUpperCase()));
+        const uppercaseWords = window.gameData.today.answers.map(a => a.toUpperCase())
+
         controls.appendChild(hints);
         controls.appendChild(hintLetters);
         controls.style.setProperty('padding-top', '60px');
@@ -34,15 +37,22 @@
             hints.innerHTML = null;
             hintLetters.innerHTML = '';
             let starts = {};
+
             const alreadyKnown = new Set([...document.getElementsByClassName('sb-anagram')].map(e => e.innerHTML.toUpperCase()));
-            window.gameData.today.answers.map(a => a.toUpperCase()).forEach(a => {
+            const sortedWords = [...uppercaseWords.filter(a => alreadyKnown.has(a)),
+                                 ...uppercaseWords.filter(a => !alreadyKnown.has(a)).sort((a,b) => a[0].localeCompare(b[0]) || (a.length - b.length))]
+            sortedWords.forEach(a => {
                 let el = document.createElement('span');
                 el.style.setProperty('white-space', 'nowrap');
                 el.style.setProperty('line-height', '1.2rem');
                 hints.appendChild(el);
                 if (alreadyKnown.has(a)) {
                     el.innerHTML += a + '<br>';
-                    el.style.setProperty('color', 'gray');
+                    if (pangrams.has(a)) {
+                        el.style.setProperty('color', 'green');
+                    } else {
+                        el.style.setProperty('color', 'gray');
+                    }
                 } else {
                     el.innerHTML += a[0] + '*'.repeat(a.length-1) + ' (' + a.length + ')<br>';
                     el.style.setProperty('color', 'black');
