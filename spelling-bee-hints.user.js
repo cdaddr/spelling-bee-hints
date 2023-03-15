@@ -18,14 +18,17 @@
         const controls = document.getElementsByClassName('sb-controls-box')[0];
         const hints = document.createElement('div');
         const hintLetters = document.createElement('div');
+        const progressBox = document.getElementsByClassName('sb-progress-box')[0];
         hints.style = 'column-count: 3; font-family: monospace; padding-left: 2rem; padding-right: 2rem;';
         hintLetters.style = 'font-family: monospace; background: #f7da21; padding: 1rem; font-weight: bold; border-radius: 1rem;';
 
-        document.getElementById('pz-game-root').prepend(document.getElementsByClassName('sb-progress-box')[0]);
+        document.getElementById('pz-game-root').prepend(progressBox);
+        progressBox.style.setProperty('display', 'relative');
         document.getElementsByClassName('sb-status-box')[0].style = 'display: none';
 
         controls.appendChild(hints);
         controls.appendChild(hintLetters);
+        controls.style.setProperty('padding-top', '60px');
 
         let updateHints = function(hints) {
             hints.innerHTML = null;
@@ -47,10 +50,12 @@
                     starts[a.slice(0,2)] += 1;
                 }
             });
-            hintLetters.innerHTML += '<div style="padding-bottom: 1rem">Words found: ' + alreadyKnown.size + ' of ' + window.gameData.today.answers.length + '<br></div>';
-            hintLetters.innerHTML += Object.keys(starts).map(k => '<div style="white-space: nowrap">' + k + ': ' + starts[k] + '</div>').join('');
+            hintLetters.innerHTML += '<div style="padding-bottom: 1rem">Words found: ' + alreadyKnown.size + ' of ' + window.gameData.today.answers.length + '</div>';
+            hintLetters.innerHTML += '<div style="padding-bottom: 1rem"> ' + window.gameData.today.pangrams.length + ' pangrams<br></div>';
+
+            hintLetters.innerHTML += Object.keys(starts).sort().map(k => '<div style="white-space: nowrap">' + k + ': ' + starts[k] + '</div>').join('');
             if(alreadyKnown.size === window.gameData.today.answers.length) {
-                hintLetters.innerHTML += '<span style="font-size: 2.5rem;">👑🐝</span>';
+                hintLetters.innerHTML += '<span style="font-size: 2.5rem;">👑🐝 ❤️</span>';
             }
         }
 
