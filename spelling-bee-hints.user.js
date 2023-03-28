@@ -36,9 +36,13 @@
         hintLetters.style = "background: #f7da21; padding: 1rem; font-weight: bold; border-radius: 1rem;";
         hintLetters.style.setProperty('font-family', monospace);
         hintLetters.style.setProperty('font-size', '0.8rem');
+
         const progressBox = document.getElementsByClassName('sb-progress-box')[0];
         progressBox.style.setProperty('display', 'relative');
-        document.getElementById('pz-game-root').prepend(progressBox);
+        progressBox.style.setProperty('width', '80%');
+        const progressContainer = document.getElementById('pz-game-root');
+        progressContainer.style.setProperty('align-items', 'center');
+        progressContainer.prepend(progressBox);
 
         document.getElementsByClassName('sb-status-box')[0].style = 'display: none';
 
