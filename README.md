@@ -9,7 +9,7 @@ This has been tested with Tampermonkey — tested in Firefox and Chrome on 15 Ma
 
 To install, click this link: https://github.com/cdaddr/spelling-bee-hints/raw/main/spelling-bee-hints.user.js and Tampermonkey should prompt you to install the user script.  That's all.  The next time you visit Spelling Bee in browser, it should replace the hint box with my custom version.  (This is the "Raw" link Github provides for `spelling-bee-hints.user.js` in this repo.)
 
-# Features:
+# Features
 
 * Displays most of the hint info you'd normally see on SB's "Today's Hints" page, without having to click back and forth between the hints page and puzzle, or having to count words manually to see what's left.
 * Displays cute bee emoji once you've won 🐝
