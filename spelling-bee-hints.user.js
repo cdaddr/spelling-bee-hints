@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spelling Bee Hints
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Add hints to NYTimes Spelling Bee
 // @author       Brian Carper
 // @match        https://www.nytimes.com/puzzles/spelling-bee*
