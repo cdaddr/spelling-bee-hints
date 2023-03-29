@@ -3,6 +3,8 @@
 This userscript replaces the hint panel in NY Times Spelling Bee puzzle with a more informative
 version.  
 
+<img width="1107" alt="Spelling Bee Screenshot" src="https://user-images.githubusercontent.com/33412/228452631-5a1515d3-3415-42d0-bb49-44b380f6bb05.png">
+
 # Install
 
 This has been tested with Tampermonkey — tested in Firefox and Chrome on 15 Mar 2023.
