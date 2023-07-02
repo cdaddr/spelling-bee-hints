@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spelling Bee Hints
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Add hints to NYTimes Spelling Bee
 // @author       Brian Carper
 // @match        https://www.nytimes.com/puzzles/spelling-bee*
@@ -17,17 +17,20 @@
     window.addEventListener("load", (e) => {
         const hintsContainer = document.createElement('div');
         const hintsToggle = document.createElement('div');
+        const hints = document.createElement('div');
         let hintsVisible;
 
         let toggleHints = function() {
             hintsVisible = !hintsVisible;
             hintsContainer.style.setProperty('display', hintsVisible ? 'flex' : 'none');
             hintsToggle.style.setProperty('background', hintsVisible ? '#e6e6e6' : 'transparent');
+            if(hintsVisible) { 
+                updateHints(hints);
+            }
         }
 
         const monospace = "ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace";
 
-        const hints = document.createElement('div');
         hints.style = 'column-count: 3; padding-right: 1.5rem;';
         hints.style.setProperty('font-family', monospace);
         hints.style.setProperty('font-size', '0.8rem');
@@ -109,6 +112,5 @@
         document.addEventListener("keyup", function(e) {
             updateHints(hints);
         });
-        updateHints(hints);
     }, false);
 })();
